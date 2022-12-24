@@ -35,6 +35,10 @@ public class SinglyLinkedList {
     }
 
     public void display(){
+
+        if(head == null)
+            return;
+
         Node temp = head;  //Copy head in temp because we don't have to update head
 
         while(temp != null){

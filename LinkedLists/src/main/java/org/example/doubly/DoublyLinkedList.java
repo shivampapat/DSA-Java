@@ -51,6 +51,9 @@ public class DoublyLinkedList {
     }
 
     public void display(){
+        if(head == null)
+            return;
+
         Node temp = head;
         while (temp != null)
         {
@@ -61,6 +64,8 @@ public class DoublyLinkedList {
     }
 
     public void reverseDisplay(){
+        if(head == null)
+            return;
         Node temp = head;
 
         while(temp.next != null){

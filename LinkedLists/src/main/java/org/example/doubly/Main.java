@@ -41,10 +41,10 @@ public class Main {
         System.out.println("\nCount: ");
         System.out.println(doublyLL.count());
 
-            doublyLL.reverseLL();
-            doublyLL.display();
+        doublyLL.reverseLL();
+        doublyLL.display();
 
-            doublyLL.reverseLL();
-            doublyLL.display();
+        doublyLL.reverseLL();
+        doublyLL.display();
     }
 }
