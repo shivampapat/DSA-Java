@@ -1,11 +1,11 @@
 package org.example.singly;
 
 
-public class LinkedList {
+public class SinglyLinkedList {
     Node head;
     int size;
 
-    public LinkedList(){
+    public SinglyLinkedList(){
         this.head = null;
         this.size = 0;
     }
@@ -18,11 +18,8 @@ public class LinkedList {
             this.size++;
             return;
         }
-        Node temp = this.head;
-        while(temp.next != null){
-            temp = temp.next;
-        }
-        temp.next = node;
+       node.next = head;
+        head = node;
         this.size++;
     }
 
