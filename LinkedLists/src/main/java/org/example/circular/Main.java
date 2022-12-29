@@ -23,13 +23,13 @@ public class Main {
         circularLinkedList.deleteFirst();
         circularLinkedList.display();
 
-//        System.out.println("\nAdding Last: ");
-//        doublyLL.addLast(61);
-//        doublyLL.display();
-//
-//        System.out.println("\nDeleting last: ");
-//        doublyLL.deleteLast();
-//        doublyLL.display();
+        System.out.println("\nAdding Last: ");
+        circularLinkedList.addLast(61);
+        circularLinkedList.display();
+
+        System.out.println("\nDeleting last: ");
+        circularLinkedList.deleteLast();
+        circularLinkedList.display();
 //
 //        System.out.println("\nAdding at index 3: ");
 //        doublyLL.addAtIndex(3,71);

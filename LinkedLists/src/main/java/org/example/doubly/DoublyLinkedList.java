@@ -120,9 +120,9 @@ public class DoublyLinkedList {
     }
 
     public void addAtIndex(int index, int data){
-        if(index < 0 || index >size+1)
+        if(index <= 0 || index >size+1)
             return;
-        if(index == 0){
+        if(index == 1){
             addFirst(data);
             return;
         }
@@ -145,9 +145,9 @@ public class DoublyLinkedList {
     }
 
     public Node deleteAtIndex(int index){
-        if(index < 0 || index >size+1)
+        if(index <= 0 || index >size+1)
             return null;
-        if(index == 0){
+        if(index == 1){
             return deleteFirst();
         }
         if(index == size+1){

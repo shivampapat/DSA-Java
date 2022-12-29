@@ -66,4 +66,60 @@ public class CircularLinkedList {
     public int count(){
         return this.size;
     }
+
+    public void addLast(int data){
+        Node node = new Node(data);
+        if(head == null){
+            head = node;
+            node.next = node;
+            this.size++;
+            return;
+        }
+
+        Node temp = head;
+        while(temp.next != head){
+            temp = temp.next;
+        }
+        node.next = head;
+        temp.next = node;
+        this.size++;
+    }
+
+    public Node deleteLast(){
+        if(head == null)
+            return null;
+
+        if(head.next == head){
+            Node node = head;
+            head = null;
+            this.size--;
+            return node;
+        }
+
+        Node temp = head;
+        while(temp.next.next != head){
+            temp = temp.next;
+        }
+
+        Node node = temp.next;
+        temp.next = head;
+        this.size--;
+        return node;
+    }
+
+    public void addAtIndex(int index, int data){
+        if(index <=0 || index > size+1){
+            return;
+        }
+
+        if(index == 1){
+            addFirst(data);
+        }
+        else if(index == (size+1)){
+            addLast(data);
+        }
+        else{
+
+        }
+    }
 }
