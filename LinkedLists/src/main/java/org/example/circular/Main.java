@@ -30,22 +30,23 @@ public class Main {
         System.out.println("\nDeleting last: ");
         circularLinkedList.deleteLast();
         circularLinkedList.display();
-//
-//        System.out.println("\nAdding at index 3: ");
-//        doublyLL.addAtIndex(3,71);
-//        doublyLL.display();
-//
-//        System.out.println("\nDeleting at index 4: ");
-//        doublyLL.deleteAtIndex(4);
-//        doublyLL.display();
-//
-//        System.out.println("\nCount: ");
-//        System.out.println(doublyLL.count());
-//
-//        doublyLL.reverseLL();
-//        doublyLL.display();
-//
-//        doublyLL.reverseLL();
-//        doublyLL.display();
+
+        System.out.println("\nAdding at index 3: ");
+        circularLinkedList.addAtIndex(3,71);
+        circularLinkedList.display();
+
+        System.out.println("\nDeleting at index 4: ");
+        circularLinkedList.deleteAtIndex(4);
+        circularLinkedList.display();
+
+        System.out.println("\nCount: ");
+        System.out.println(circularLinkedList.count());
+
+        circularLinkedList.reverseLL();
+        circularLinkedList.display();
+
+        circularLinkedList.reverseLL();
+        circularLinkedList.display();
+
     }
 }

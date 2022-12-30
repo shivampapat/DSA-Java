@@ -119,7 +119,56 @@ public class CircularLinkedList {
             addLast(data);
         }
         else{
-
+            Node temp = head;
+            for(int i=2;i<index;i++){
+                temp  = temp.next;
+            }
+            Node node = new Node(data);
+            node.next = temp.next;
+            temp.next = node;
+            this.size++;
         }
+    }
+
+    public Node deleteAtIndex(int index){
+        if(index <=0 || index > size+1){
+            return null;
+        }
+
+        if(index == 1){
+            return deleteFirst();
+        }
+        else if(index == (size+1)){
+            return deleteLast();
+        }
+        else{
+            Node temp = head;
+            for(int i=2;i<index;i++){
+                temp  = temp.next;
+            }
+            Node node = temp.next;
+            temp.next = temp.next.next;
+            this.size--;
+            return node;
+        }
+    }
+
+    public Node reverseLL(){
+        if(head == null || head.next == head)
+            return head;
+
+        Node currNode = head;
+        Node prevNode= null;
+        Node nextNode = currNode.next;
+        while (nextNode != head){
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+            nextNode = nextNode.next;
+        }
+        currNode.next = prevNode;
+        head.next = currNode;
+        head = currNode;
+        return head;
     }
 }
