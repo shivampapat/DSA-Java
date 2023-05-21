@@ -32,24 +32,25 @@ public class CircularLinkedList {
         if(head == null)
             return null;
 
+         //Only 1 node present in LL
         if(head.next == head){
-            Node node = head;
-            node.next = null;
+            Node delNode = head;
+            delNode.next = null;
             head = null;
             this.size--;
-            return node;
+            return delNode;
         }
 
         Node temp = head;
-        while(temp.next != head){
+        while(temp.next != head){    //Goto last node
             temp = temp.next;
         }
-        Node node = head;
+        Node delNode = head;
         temp.next = head.next;
         head = head.next;
-        node.next = null;
+        delNode.next = null;
         this.size--;
-        return node;
+        return delNode;
     }
 
     public void display(){
@@ -68,20 +69,23 @@ public class CircularLinkedList {
     }
 
     public void addLast(int data){
-        Node node = new Node(data);
+        Node newNode = new Node(data);
+
+        //Empty LL
         if(head == null){
-            head = node;
-            node.next = node;
+            head = newNode;
+            newNode.next = newNode;
             this.size++;
             return;
         }
 
+        //1 or more nodes present in LL
         Node temp = head;
-        while(temp.next != head){
+        while(temp.next != head){  //Goto last node
             temp = temp.next;
         }
-        node.next = head;
-        temp.next = node;
+        newNode.next = head;
+        temp.next = newNode;
         this.size++;
     }
 
@@ -89,26 +93,32 @@ public class CircularLinkedList {
         if(head == null)
             return null;
 
+        //Only 1 node present
         if(head.next == head){
-            Node node = head;
+            Node delNode = head;
             head = null;
             this.size--;
-            return node;
+            return delNode;
         }
 
         Node temp = head;
-        while(temp.next.next != head){
+        while(temp.next.next != head){ //Goto second last node
             temp = temp.next;
         }
 
-        Node node = temp.next;
+        //Store last node
+        Node delNode = temp.next;
         temp.next = head;
         this.size--;
-        return node;
+        return delNode;
     }
 
     public void addAtIndex(int index, int data){
         if(index <=0 || index > size+1){
+            return;
+        }
+
+        if(this.head == null && index > 1){   //No node present but trying to add Node in LL at any place greater than 1
             return;
         }
 

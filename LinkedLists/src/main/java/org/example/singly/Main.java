@@ -29,9 +29,11 @@ public class Main {
         singlyLL.deleteAtIndex(4);
         singlyLL.display();
 
+        System.out.println("Reversing Linked List");
         singlyLL.reverseLL();
         singlyLL.display();
 
+        System.out.println("Reversing Linked List");
         singlyLL.reverseLL();
         singlyLL.display();
     }

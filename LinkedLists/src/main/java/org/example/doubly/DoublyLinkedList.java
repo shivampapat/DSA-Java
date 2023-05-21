@@ -10,47 +10,63 @@ public class DoublyLinkedList {
         this.size = 0;
     }
 
-    public DoublyLinkedList(Node head, int size) {
+    public DoublyLinkedList(Node head) {
         this.head = head;
-        this.size = size;
+        this.size = 0;
     }
 
-    public void addFirst(int data){
+    public void addFirst(int data)
+    {
+        //Create node for the input data
+        Node newNode = new Node(data);
 
-        Node node = new Node(data);
-        if(this.size == 0)
+        //Empty linked list
+        if(head == null)
         {
-            this.head = node;
+            this.head = newNode;
             this.size++;
             return;
         }
 
-        node.next = head;
-        head.prev= node;
-        head = node;
+        //More than 1 node present in LL
+        Node temp = head;
+        head = newNode;
+        newNode.next = temp;
+        temp.prev = newNode;
+
         this.size++;
     }
 
-    public Node deleteFirst(){
+    public Node deleteFirst()
+    {
+        //Empty LL
         if(head == null)
             return null;
 
-        Node node;
-        if(head.next == null){
-            node = head;
+        //Create temporary node to store the node that is to be deleted
+        Node delNode = null;
+
+        //Only 1 node present in LL
+        if(head.next == null)
+        {
+            delNode = head;
             head = null;
             this.size--;
-            return node;
+            return delNode;
         }
-        node = head;
+
+        //More than 1 node present in LL
+        delNode = head;
         head = head.next;
-        node.prev = node.next = null;
         head.prev = null;
+        delNode.prev = delNode.next = null;  //Make null for safety reasons
         this.size--;
-        return node;
+
+        return delNode;
     }
 
-    public void display(){
+    public void display()
+    {
         if(head == null)
             return;
 
@@ -68,6 +84,7 @@ public class DoublyLinkedList {
             return;
         Node temp = head;
 
+        //Goto last node and then come back reverse using "prev"
         while(temp.next != null){
             temp = temp.next;
         }
@@ -82,44 +99,57 @@ public class DoublyLinkedList {
         return this.size;
     }
 
-    public void addLast(int data){
-        Node node = new Node(data);
+    public void addLast(int data)
+    {
+        Node newNode = new Node(data);
+
+        //Empty LL
         if(head == null){
-            addFirst(data);
+            this.head = newNode;
+            this.size++;
             return;
         }
+
+        //More than 1 node present in LL
         Node temp = head;
-        while(temp.next != null){
+        while(temp.next != null){    //Goto last node and then append the node at last
             temp = temp.next;
         }
-        temp.next = node;
-        node.prev = temp;
+
+        temp.next = newNode;
+        newNode.prev = temp;
         this.size++;
     }
 
-    public Node deleteLast(){
-        Node node;
+    public Node deleteLast()
+    {
+        Node delNode;
+        //Empty LL
         if(head == null)
             return null;
 
+        //Only 1 node present
         if(head.next == null){
-            node = head;
+            delNode = head;
             head = null;
             this.size--;
-            return node;
+            return delNode;
         }
+
+        //More than 1 node present in LL
         Node temp = head;
-        while(temp.next != null){
+        while(temp.next.next != null){ // Goto second last node
             temp = temp.next;
         }
-        node = temp;
-        temp.prev.next = null;
-        node.prev = node.next = null;
+        delNode = temp.next;     //Store last node to be deleted
+        temp.next = null;          //Make last node's next to null
+        delNode.prev = delNode.next = null;   //Safe update to null
         this.size--;
-        return node;
+        return delNode;
     }
 
-    public void addAtIndex(int index, int data){
+    public void addAtIndex(int index, int data)
+    {
         if(index <= 0 || index >size+1)
             return;
         if(index == 1){
@@ -131,6 +161,7 @@ public class DoublyLinkedList {
             return;
         }
 
+        //Goto 1 node previous to the position
         Node temp = head;
         for(int i=2;i<index;i++){
             temp = temp.next;

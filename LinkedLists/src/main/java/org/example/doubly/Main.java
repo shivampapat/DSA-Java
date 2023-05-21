@@ -41,9 +41,11 @@ public class Main {
         System.out.println("\nCount: ");
         System.out.println(doublyLL.count());
 
+        System.out.println("\nReversing Linked List: ");
         doublyLL.reverseLL();
         doublyLL.display();
 
+        System.out.println("\nReversing Linked List: ");
         doublyLL.reverseLL();
         doublyLL.display();
     }

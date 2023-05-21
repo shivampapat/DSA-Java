@@ -42,11 +42,12 @@ public class Main {
         System.out.println("\nCount: ");
         System.out.println(circularLinkedList.count());
 
+        System.out.println("\nReversing Linked List: ");
         circularLinkedList.reverseLL();
         circularLinkedList.display();
 
+        System.out.println("\nReversing Linked List: ");
         circularLinkedList.reverseLL();
         circularLinkedList.display();
-
     }
 }

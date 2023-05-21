@@ -12,29 +12,41 @@ public class SinglyLinkedList {
 
     public void addFirst(int data){
 
-        Node node = new Node(data);
+        Node newNode = new Node(data);
+
+        // LinkedList is empty
         if(this.head == null){
-            this.head = node;
+            this.head = newNode;
             this.size++;
             return;
         }
-       node.next = head;
-        head = node;
+        //LL is not empty
+        newNode.next = head;
+        head = newNode;
+
         this.size++;
+        System.out.println("Added a new node: " + data );
     }
 
-    public Node deleteFirst(){       //0 means success and -1 means error
+    public Node deleteFirst(){
 
+        //LL is empty
         if(this.head ==null ){
             return null;
         }
-        Node node = this.head;
+        //Store the node to be deleted and return that
+        Node delNode = this.head;
         this.head = this.head.next;
+        delNode.next = null; // safe null
+
+        System.out.println("Deleted  node: " + delNode.data );
         this.size--;
-        return node;
+        return delNode;
     }
 
     public void display(){
+
+        System.out.println("LinkedList is :");
 
         if(head == null)
             return;
@@ -45,25 +57,34 @@ public class SinglyLinkedList {
             System.out.printf("%d ", temp.data);
             temp = temp.next;
         }
+
         System.out.println();
     }
 
-    //
+
     public int count(){
+        System.out.println("LinkedList count is:");
         return this.size;
     }
 
     public void addLast(int data){
+
+        Node newNode = new Node(data);
+
         if(this.head == null){
-            return;
+            head = newNode;
         }
-        Node node = new Node(data);
-        Node temp = this.head;
-        while(temp.next != null){
-            temp = temp.next;
+        else
+        {
+            Node temp = this.head;
+            while(temp.next != null){      //go to last node
+                temp = temp.next;
+            }
+            temp.next = newNode;
         }
-        temp.next = node;
+
         this.size++;
+        System.out.println("Added a new node: " + data );
     }
 
     public Node deleteLast(){
@@ -71,69 +92,91 @@ public class SinglyLinkedList {
             return null;
         }
 
-        Node node = null;
+        Node delNode = null;
+
+        // Only 1 node present in LL
         if(head.next == null){
-            node = head;
+            delNode = head;
             head = null;
-            return node;
+            this.size--;
+            return delNode;
         }
 
+        //More than 1 node present in LL
         Node temp = this.head;
-        while(temp.next.next != null){
+        while(temp.next.next != null)    //Go to second last node
+        {
             temp = temp.next;
         }
-        temp.next = node;
+        delNode = temp.next;      //Store last node to be returned
         temp.next = null;
+        delNode.next = null; // safe null
+
+        System.out.println("Deleted  node: " + delNode.data );
         this.size--;
-        return node;
+        return delNode;
     }
 
     public void addAtIndex(int index, int data){
 
-        if(index <=0 || index >(size+2))
+        //Consider 1 based position of nodes so first node is at position 1
+
+        if(index <=0 || index >(size+1))
             return;
 
-        if(this.head == null && index > 1){
-                return;
-        }
+        //Adding in first position
         if(index == 1){
             addFirst(data);
         }
+        //Adding in last position
         else if(index == this.size+1){
             addLast(data);
         }
-        else{
-            Node node = new Node(data);
+        else
+        {
+            Node newNode = new Node(data);
             Node temp = head;
-            for(int i=2;i<index;i++){
+
+            for(int i=1;i<(index-1);i++){
                 temp = temp.next;
             }
-            node.next = temp.next;
-            temp.next = node;
+            newNode.next = temp.next;
+            temp.next = newNode;
+            System.out.println("Add a new  node: " + data );
+            this.size++;
         }
-        this.size++;
+
     }
 
-    public Node deleteAtIndex(int index){
-        if(index <=0 || index >size)
+    public Node deleteAtIndex(int index)
+    {
+        if(index <=0 || index > this.size)
             return null;
 
-        if(head == null)
-            return null;
-
+        //Delete first node
         if(index == 1)
             return deleteFirst();
+        //Delete last node
         else if (index == size)
             return deleteLast();
-        else{
-            Node node = null;
-            Node temp = head;
-            for (int i = 2; i < index; i++) {
-                temp  = temp.next;
-            }
-            temp.next = temp.next.next;
-            return node;
+
+        //Delete from any other position
+        Node delNode = null;
+        Node temp = head;
+        for (int i = 1; i < (index-1); i++)
+        {
+            temp  = temp.next;
         }
+        delNode = temp.next;
+
+        temp.next = temp.next.next;
+
+        delNode.next = null; // safely
+
+        System.out.println("Deleted  node: " + delNode.data );
+        this.size--;
+        return delNode;
+
     }
 
     public void reverseLL(){
